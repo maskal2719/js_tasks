@@ -96,23 +96,29 @@ task6
 // второй промис возвращает объект {age: 16} через 3 с, а третий {city: ''} через 4с.
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
-// const task7_1 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve({name: 'Anna'})
-//     }, 2000)
-// })
-//     .then(data => data)
-//
-// const task7_2 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve({age: 12})
-//     }, 3000)
-// })
-// const task7_3 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve({city: ''})
-//     }, 4000)
-// })
+
+Promise.all([
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({name: 'Anna'})
+        }, 2000)
+    }),
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({age: 12})
+        }, 3000)
+    }),
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({city: ''})
+        }, 4000)
+    })
+])
+    .then((data) => {
+        const [name, age, city] = data;
+        // @ts-ignore
+        console.log({name: name.name, age: age.age, city: city.city})
+    })
 
 
 // just a plug
